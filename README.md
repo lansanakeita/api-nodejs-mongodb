@@ -1,2 +1,9 @@
 # api-nodejs-mongodb
-Projet scolaire
+
+## Install dependencies
+
+`npm install`
+
+## Run API
+
+`npm run start`

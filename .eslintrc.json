@@ -1,0 +1,24 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": "airbnb-base",
+  "plugins": ["prettier"],
+  "overrides": [],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "indent": ["error", 2], // Contrôle l'indentation
+    "quotes": ["error", "single"], // Contrôle le type de guillemets utilisés dans les chaînes de caractères (simples, doubles ou "backticks")
+    "semi": ["always"], // Contrôle l'utilisation des points-virgules à la fin des instructions. Par exemple, pour exiger l'utilisation de points-virgules:
+    "no-unused-vars": ["warn"], // Signale les variables déclarées mais non utilisées.
+    "no-console": "off", // Signale les appels à console.log(), console.warn(), etc.
+    "eqeqeq": ["error", "always"], // Exige l'utilisation d'opérateurs de comparaison stricts (=== et !==) plutôt que d'opérateurs de comparaison non stricts (== et !=).
+    "brace-style": ["error", "1tbs"], // Contrôle le style de placement des accolades pour les blocs de code. Par exemple, pour exiger le style "1TBS" (One True Brace Style)
+    "camelcase": ["error", { "properties": "always" }] // Exige l'utilisation de la notation camelCase pour les identifiants de variables, de fonctions et de propriétés d'objets.
+  }
+}
