@@ -23,5 +23,6 @@
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.8.8"
-  }
+  },
+  "repository": "https://github.com/lansanakeita/api-nodejs-mongodb.git"
 }

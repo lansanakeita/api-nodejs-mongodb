@@ -2,8 +2,8 @@
 
 ## Install dependencies
 
-`npm install`
+`yarn install`
 
 ## Run API
 
-`npm run start`
+`yarn start`
