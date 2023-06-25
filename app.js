@@ -3,6 +3,7 @@ import express from 'express';
 import morgan from 'morgan';
 import swaggerDocs from './src/utils/swagger.js';
 import swaggerUI from 'swagger-ui-express';
+import userRoutes from './src/routes/user/userRoutes.js';
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use(
 );
 app.use(morgan('combined'));
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
+app.use(userRoutes);
 
 /**
  * @swagger
