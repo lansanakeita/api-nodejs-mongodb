@@ -15,7 +15,7 @@ mongoose
   .then(() => {
     console.log('DB connection successful!');
     app.listen(port, () => {
-      console.log(`Server running on port ${port}`);
+      console.log(`Server running on port http://localhost:${port}`);
     });
   })
   .catch((err) => console.log(err));
