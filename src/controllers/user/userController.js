@@ -59,16 +59,17 @@ export async function createUser(req, res, next) {
     await user
       .save()
       .then((result) => {
-        res.status(201).json({
+        return res.status(201).json({
           message: 'User created successfully!',
           user: result,
         });
       })
       .catch((err) => {
         console.error(err);
+        return res.status(500).json({ error: err.toString() });
       });
   } catch (error) {
-    res.status(400).json({ error: error.toString() });
+    return res.status(400).json({ error: error.toString() });
   }
 }
 
