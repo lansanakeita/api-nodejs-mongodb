@@ -36,7 +36,7 @@ export async function getUser(req, res, next) {
  */
 export async function createUser(req, res, next) {
   const errors = validationResult(req);
-  if (isEmpty(errors)) {
+  if (!errors.isEmpty()) {
     return res.status(422).json({
       message: 'Validation failed, entered data is incorrect.',
       errors: errors.array(),
