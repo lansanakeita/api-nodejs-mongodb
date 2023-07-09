@@ -36,7 +36,7 @@ export async function getUser(req, res, next) {
  */
 export async function createUser(req, res, next) {
   const errors = validationResult(req);
-  if (isEmpty(errors)) {
+  if (!errors.isEmpty()) {
     return res.status(422).json({
       message: 'Validation failed, entered data is incorrect.',
       errors: errors.array(),
@@ -44,20 +44,32 @@ export async function createUser(req, res, next) {
   }
 
   try {
+    const existingUser = await User.findOne({ userName: req.body.userName });
+    const existingEmail = await User.findOne({ email: req.body.email });
+
+    if (existingUser) {
+      return res.status(400).json({ error: 'User name already in use.' });
+    }
+
+    if (existingEmail) {
+      return res.status(400).json({ error: 'Email already in use.' });
+    }
+
     const user = new User(req.body);
     await user
       .save()
       .then((result) => {
-        res.status(201).json({
+        return res.status(201).json({
           message: 'User created successfully!',
           user: result,
         });
       })
       .catch((err) => {
         console.error(err);
+        return res.status(500).json({ error: err.toString() });
       });
   } catch (error) {
-    res.status(400).json({ error: error.toString() });
+    return res.status(400).json({ error: error.toString() });
   }
 }
 
@@ -66,7 +78,7 @@ export async function createUser(req, res, next) {
  */
 export async function updateUser(req, res, next) {
   const errors = validationResult(req);
-  if (isEmpty(errors)) {
+  if (!errors.isEmpty()) {
     return res.status(422).json({
       message: 'Validation failed, updated data is incorrect.',
       errors: errors.array(),
@@ -74,19 +86,40 @@ export async function updateUser(req, res, next) {
   }
 
   const updatedInfo = Object.keys(req.body);
-  const id = get(req.params, 'id');
+  const id = req.params.id;
 
   try {
     const user = await User.findById(id);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    if (updatedInfo.includes('userName')) {
+      const existingUser = await User.findOne({
+        userName: req.body.userName,
+        _id: { $ne: id },
+      });
+      if (existingUser) {
+        return res.status(400).json({ error: 'User name already in use.' });
+      }
+    }
+
+    if (updatedInfo.includes('email')) {
+      const existingEmail = await User.findOne({
+        email: req.body.email,
+        _id: { $ne: id },
+      });
+      if (existingEmail) {
+        return res.status(400).json({ error: 'Email already in use.' });
+      }
+    }
+
     updatedInfo.forEach((update) => (user[update] = req.body[update]));
     await user.save();
 
-    if (isNull(user) || isUndefined(user)) {
-      res.status(404).json({ error: 'User not found' });
-    }
-    res.status(200).json(user);
+    return res.status(200).json(user);
   } catch (error) {
-    res.status(400).json({ error: error.toString() });
+    return res.status(400).json({ error: error.toString() });
   }
 }
 
@@ -95,10 +128,10 @@ export async function deleteUser(req, res, next) {
     const id = get(req.params, 'id');
     const user = await User.findByIdAndRemove(id);
     if (isNull(user) || isUndefined(user)) {
-      res.status(404).json({ error: 'User not found' });
+      return res.status(404).json({ error: 'User not found' });
     }
-    res.status(200).json({ message: 'User deleted' });
+    return res.status(200).json({ message: 'User deleted' });
   } catch (error) {
-    res.status(400).json({ error: error.toString() });
+    return res.status(400).json({ error: error.toString() });
   }
 }
