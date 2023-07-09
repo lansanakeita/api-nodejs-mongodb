@@ -44,6 +44,17 @@ export async function createUser(req, res, next) {
   }
 
   try {
+    const existingUser = await User.findOne({ userName: req.body.userName });
+    const existingEmail = await User.findOne({ email: req.body.email });
+
+    if (existingUser) {
+      return res.status(400).json({ error: 'User name already in use.' });
+    }
+
+    if (existingEmail) {
+      return res.status(400).json({ error: 'Email already in use.' });
+    }
+
     const user = new User(req.body);
     await user
       .save()
