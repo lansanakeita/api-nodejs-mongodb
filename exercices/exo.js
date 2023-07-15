@@ -61,3 +61,9 @@ db.salles.distinct('adresse.codePostal');
 
 // 14. Mettez à jour tous les documents de la collection salles en rajoutant 100 personnes à leur capacité actuelle.
 db.salles.updateMany({}, { $inc: { capacite: 100 } });
+
+// 15. Ajoutez le style « jazz » à toutes les salles qui n’en programment pas.
+db.salles.updateMany(
+  { styles: { $ne: 'jazz' } },
+  { $addToSet: { styles: 'jazz' } }
+);
