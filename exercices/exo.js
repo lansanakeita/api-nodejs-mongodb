@@ -58,3 +58,6 @@ db.salles.find(
 
 // 13. Affichez les différents codes postaux présents dans les documents de la collection salles.
 db.salles.distinct('adresse.codePostal');
+
+// 14. Mettez à jour tous les documents de la collection salles en rajoutant 100 personnes à leur capacité actuelle.
+db.salles.updateMany({}, { $inc: { capacite: 100 } });
