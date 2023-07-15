@@ -98,3 +98,6 @@ db.salles.updateMany(
   { $set: { nom: 'Pub Z', capacite: NumberInt(50), smac: false } },
   { upsert: true }
 );
+
+// 21. Affichez le décompte des documents pour lesquels le champ _id est de type « objectId ».
+db.salles.countDocuments({ _id: { $type: 'objectId' } });
