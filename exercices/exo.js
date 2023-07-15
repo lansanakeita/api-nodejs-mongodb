@@ -76,3 +76,12 @@ db.salles.updateOne(
   { _id: 3 },
   { $push: { styles: { $each: ['techno', 'reggae'] } } }
 );
+
+// 18. Pour les salles dont le nom commence par la lettre P (majuscule ou minuscule), augmentez la capacité de 150 places et rajoutez un champ de type tableau nommé contact dans lequel se trouvera un document comportant un champ nommé telephone dont la valeur sera « 04 11 94 00 10 ».
+db.salles.updateMany(
+  { nom: { $regex: /^p/i } },
+  {
+    $inc: { capacite: 150 },
+    $set: { contact: [{ telephone: '04 11 94 00 10' }] },
+  }
+);
