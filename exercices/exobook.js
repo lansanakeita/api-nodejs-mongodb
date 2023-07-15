@@ -6,3 +6,6 @@ db.employees.find({ age: { $gt: 33 } });
 
 // 3. Trier les documents dans la collection "employees" par salaire décroissant.
 db.employees.find({}).sort({ salary: -1 });
+
+// 4. Sélectionner uniquement le nom et le job de chaque document.
+db.employees.find({}, { name: 1, job: 1, _id: 0 });
