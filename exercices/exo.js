@@ -70,3 +70,9 @@ db.salles.updateMany(
 
 // 16. Retirez le style «funk» à toutes les salles dont l’identifiant n’est égal ni à 2, ni à 3.
 db.salles.updateMany({ _id: { $nin: [2, 3] } }, { $pull: { styles: 'funk' } });
+
+// 17. Ajoutez un tableau composé des styles «techno» et « reggae » à la salle dont l’identifiant est 3.
+db.salles.updateOne(
+  { _id: 3 },
+  { $push: { styles: { $each: ['techno', 'reggae'] } } }
+);
