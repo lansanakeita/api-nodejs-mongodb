@@ -116,3 +116,9 @@ db.salles.replaceOne(
 
 // 24. Effectuez la suppression d’un seul document avec les critères suivants : le champ _id est de type « objectId » et la capacité de la salle est inférieure ou égale à 60 personnes.
 db.salles.deleteOne({ _id: { $type: 'objectId' }, capacite: { $lte: 60 } });
+
+// 25. À l’aide de la méthode permettant de trouver un seul document et de le mettre à jour en même temps, réduisez de 15 personnes la capacité de la salle située à Nîmes.
+db.salles.findOneAndUpdate(
+  { 'adresse.ville': 'Nîmes' },
+  { $inc: { capacite: -15 } }
+);
