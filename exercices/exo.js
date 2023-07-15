@@ -27,3 +27,9 @@ db.salles.find(
   { $or: [{ _id: { $mod: [2, 0] } }, { avis: { $exists: false } }] },
   { _id: 1 }
 );
+
+// 9. Affichez le nom des salles dont au moins un des avis comporte une note comprise entre 8 et 10 (tous deux inclus).
+db.salles.find(
+  { avis: { $elemMatch: { note: { $gte: 8, $lte: 10 } } } },
+  { _id: 0, nom: 1 }
+);
