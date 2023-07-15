@@ -101,3 +101,9 @@ db.salles.updateMany(
 
 // 21. Affichez le décompte des documents pour lesquels le champ _id est de type « objectId ».
 db.salles.countDocuments({ _id: { $type: 'objectId' } });
+
+// 22. Pour les documents dont le champ _id n’est pas de type « objectId », affichez le nom de la salle ayant la plus grande capacité. Pour y parvenir, vous effectuerez un tri dans l’ordre qui convient tout en limitant le nombre de documents affichés pour ne retourner que celui qui comporte la capacité maximale.
+db.salles
+  .find({ _id: { $not: { $type: 'objectId' } } }, { nom: 1, _id: 0 })
+  .sort({ capacite: -1 })
+  .limit(1);
