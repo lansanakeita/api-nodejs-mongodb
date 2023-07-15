@@ -39,3 +39,9 @@ db.salles.find(
   { avis: { $elemMatch: { date: { $gt: new Date('2019-11-15') } } } },
   { _id: 0, nom: 1 }
 );
+
+// 11. Affichez le nom ainsi que la capacité des salles dont le produit de la valeur de l’identifiant par 100 est strictement supérieur à la capacité.
+db.salles.find(
+  { $expr: { $gt: [{ $multiply: ['$_id', 100] }, '$capacite'] } },
+  { _id: 0, nom: 1, capacite: 1 }
+);
