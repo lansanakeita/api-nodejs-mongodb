@@ -15,3 +15,9 @@ db.salles.find({ styles: { $in: ['blues'] } }, { _id: 0, styles: 1 });
 
 // 6. Affichez tous les styles musicaux des salles qui ont le style « blues » en première position dans leur tableau styles.
 db.salles.find({ 'styles.0': 'blues' }, { _id: 0, styles: 1 });
+
+// 7. Affichez la ville des salles dont le code postal commence par 84 et qui ont une capacité strictement inférieure à 500 places (pensez à utiliser une expression régulière).
+db.salles.find(
+  { 'adresse.codePostal': { $regex: '^84' }, capacite: { $lt: 500 } },
+  { _id: 0, 'adresse.ville': 1 }
+);
