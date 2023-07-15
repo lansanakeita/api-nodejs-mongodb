@@ -9,3 +9,6 @@ db.salles.find({ 'adresse.numero': { $exists: false } }, { _id: 1 });
 
 // 4. Affichez l’identifiant puis le nom des salles qui ont exactement un avis.
 db.salles.find({ avis: { $size: 1 } }, { _id: 1, nom: 1 });
+
+// 5. Affichez tous les styles musicaux des salles qui programment notamment du blues.
+db.salles.find({ styles: { $in: ['blues'] } }, { _id: 0, styles: 1 });
