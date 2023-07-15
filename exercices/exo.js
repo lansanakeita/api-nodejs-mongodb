@@ -45,3 +45,13 @@ db.salles.find(
   { $expr: { $gt: [{ $multiply: ['$_id', 100] }, '$capacite'] } },
   { _id: 0, nom: 1, capacite: 1 }
 );
+
+// 12. Affichez le nom des salles de type SMAC programmant plus de deux styles de musiques différents en utilisant l’opérateur $where qui permet de faire usage de JavaScript.
+db.salles.find(
+  {
+    $where: function () {
+      return this.smac === true && this.styles && this.styles.length > 2;
+    },
+  },
+  { _id: 0, nom: 1 }
+);
