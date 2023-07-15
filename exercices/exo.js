@@ -107,3 +107,9 @@ db.salles
   .find({ _id: { $not: { $type: 'objectId' } } }, { nom: 1, _id: 0 })
   .sort({ capacite: -1 })
   .limit(1);
+
+// 23. Remplacez, sur la base de la valeur de son champ _id, le document créé à l’exercice 20 par un document contenant seulement le nom préexistant et la capacité, que vous monterez à 60 personnes.
+db.salles.replaceOne(
+  { _id: ObjectId('64b2beac95d899a7f97b9205') },
+  { nom: 'Pub Z', capacite: NumberInt(60) }
+);
