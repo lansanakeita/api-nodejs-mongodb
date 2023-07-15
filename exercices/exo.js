@@ -21,3 +21,9 @@ db.salles.find(
   { 'adresse.codePostal': { $regex: '^84' }, capacite: { $lt: 500 } },
   { _id: 0, 'adresse.ville': 1 }
 );
+
+// 8. Affichez l’identifiant pour les salles dont l’identifiant est pair ou le champ avis est absent.
+db.salles.find(
+  { $or: [{ _id: { $mod: [2, 0] } }, { avis: { $exists: false } }] },
+  { _id: 1 }
+);
