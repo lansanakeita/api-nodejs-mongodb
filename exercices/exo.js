@@ -91,3 +91,10 @@ db.salles.updateMany(
   { nom: { $regex: /^[aeiou]/i } },
   { $push: { avis: { date: new Date(), note: 10 } } }
 );
+
+// 20. En mode upsert, vous mettrez à jour tous les documents dont le nom commence par un z ou un Z en leur affectant comme nom « Pub Z », comme valeur du champ capacite 50 personnes (type entier et non décimal) et en positionnant le champ booléen smac à la valeur « false ».
+db.salles.updateMany(
+  { nom: { $regex: /^z/i } },
+  { $set: { nom: 'Pub Z', capacite: NumberInt(50), smac: false } },
+  { upsert: true }
+);
