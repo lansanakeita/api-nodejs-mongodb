@@ -12,3 +12,6 @@ db.salles.find({ avis: { $size: 1 } }, { _id: 1, nom: 1 });
 
 // 5. Affichez tous les styles musicaux des salles qui programment notamment du blues.
 db.salles.find({ styles: { $in: ['blues'] } }, { _id: 0, styles: 1 });
+
+// 6. Affichez tous les styles musicaux des salles qui ont le style « blues » en première position dans leur tableau styles.
+db.salles.find({ 'styles.0': 'blues' }, { _id: 0, styles: 1 });
