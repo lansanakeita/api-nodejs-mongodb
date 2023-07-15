@@ -55,3 +55,6 @@ db.salles.find(
   },
   { _id: 0, nom: 1 }
 );
+
+// 13. Affichez les différents codes postaux présents dans les documents de la collection salles.
+db.salles.distinct('adresse.codePostal');
