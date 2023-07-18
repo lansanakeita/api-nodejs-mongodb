@@ -38,7 +38,7 @@ export async function getProducts(req, res) {
   }
 }
 
-/**  *
+/***
  * Mettre à jour un produit
  */
 export async function updateProduct(req, res) {
@@ -61,7 +61,7 @@ export async function updateProduct(req, res) {
 }
 
 /**
- * DELETE step
+ * Suppression d'un produit
  */
 export async function deleteProduct(req, res) {
   try {
