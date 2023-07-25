@@ -4,6 +4,8 @@ import morgan from 'morgan';
 import swaggerDocs from './src/utils/swagger.js';
 import swaggerUI from 'swagger-ui-express';
 import userRoutes from './src/routes/user/userRoutes.js';
+import ProductRoutes from './src/routes/product/productRoutes.js';
+import OrderRoutes from './src/routes/order/orderRoutes.js';
 
 const app = express();
 
@@ -21,5 +23,7 @@ app.use(
 app.use(morgan('combined'));
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 app.use(userRoutes);
+app.use(ProductRoutes);
+app.use(OrderRoutes);
 
 export default app;
