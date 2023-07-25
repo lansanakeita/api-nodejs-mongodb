@@ -87,6 +87,7 @@ router.post('/product', createProduct);
  *       404:
  *         description: Product not found
  */
+
 router.get('/products', getProducts);
 
 /**
@@ -140,6 +141,7 @@ router.get('/products', getProducts);
  *       404:
  *         description: Product not found
  */
+
 router.get('/product/:id', getProduct);
 
 /**
