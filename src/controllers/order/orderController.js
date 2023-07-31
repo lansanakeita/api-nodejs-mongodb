@@ -1,4 +1,5 @@
 import Order from '../../models/order/orderModel.js';
+import Product from '../../models/product/productModel.js';
 import get from 'lodash/get.js';
 import isNull from 'lodash/isNull.js';
 import isUndefined from 'lodash/isUndefined.js';
@@ -9,20 +10,43 @@ import isUndefined from 'lodash/isUndefined.js';
 export async function createOrder(req, res) {
   try {
     const order = new Order(req.body);
-    await order
-      .save()
-      .then((result) => {
-        return res.status(201).json({
-          message: 'order created successfully!',
-          order: result,
+
+    if (!Array.isArray(req.body.products)) {
+      return res
+        .status(400)
+        .json({
+          error: "Invalid 'products' format. It should be an array of objects.",
         });
-      })
-      .catch((err) => {
-        console.error(err);
-        return res.status(500).json({ error: err.toString() });
-      });
+    }
+
+    for (const item of req.body.products) {
+      const product = await Product.findById(item.productId);
+      if (!product) {
+        return res
+          .status(404)
+          .json({ error: `Product with ID ${item.productId} not found.` });
+      }
+
+      if (item.quantity > product.quantity) {
+        return res
+          .status(400)
+          .json({
+            error: `Ordered quantity exceeds available quantity for product with ID ${item.productId}.`,
+          });
+      }
+
+      product.quantity -= item.quantity;
+      await product.save();
+    }
+
+    const savedOrder = await order.save();
+
+    return res.status(201).json({
+      message: 'Order created successfully!',
+      order: savedOrder,
+    });
   } catch (error) {
-    return res.status(400).json({ error: error.toString() });
+    return res.status(500).json({ error: error.toString() });
   }
 }
 
