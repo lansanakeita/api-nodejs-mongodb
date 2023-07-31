@@ -6,6 +6,7 @@ import {
   updateUser,
 } from '../../controllers/user/userController.js';
 
+import { authorize } from '../../guards/auth.guard.js';
 import { body } from 'express-validator';
 import express from 'express';
 
@@ -13,8 +14,10 @@ const router = express.Router();
 
 /**
  * @swagger
- * /users:
+ * /api/users:
+ *
  *   get:
+ *     summary: Retrieve all users
  *     tags:
  *       - User
  *     description: Get all users
@@ -67,8 +70,9 @@ router.get('/users', getUsers);
 
 /**
  * @swagger
- * /users/{id}:
+ * /api/users/{id}:
  *   get:
+ *     summary: Get a user
  *     tags:
  *      - User
  *     description: Get a user by ID
@@ -125,8 +129,9 @@ router.get('/users/:id', getUser);
 
 /**
  * @swagger
- * /users/{id}:
+ * /api/users/{id}:
  *   put:
+ *     summary: Update a user
  *     tags:
  *      - User
  *     description: Update a user by ID
@@ -169,8 +174,9 @@ router.put('/users/:id', updateUser);
 
 /**
  * @swagger
- * /users/{id}:
+ * /api/users/{id}:
  *   delete:
+ *     summary: Delete a user
  *     tags:
  *      - User
  *     description: Delete a user by ID
@@ -194,8 +200,9 @@ router.delete('/users/:id', deleteUser);
 
 /**
  * @swagger
- * /users:
+ * /api/users:
  *   post:
+ *     summary: create a user
  *     tags:
  *      - User
  *     description: Create a new user
