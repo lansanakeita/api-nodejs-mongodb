@@ -12,9 +12,9 @@ A rendre :
 - prevoir une couche DTO qui permet de presenter uniquement les demandees par le client
 - **controler les donnees issues de formulaires**
 - **prevoir un systeme de gestion d'erreur efficace avec fichier de logs**
-- generer une APIDoc web type swagger
+- **generer une APIDoc web type swagger**
 - un peu de Typescript... :)
-- utiliser la syntaxe ESM
+- **utiliser la syntaxe ESM**
 - **utiliser le router Express pour la gestion des routes**
 - **creer un systeme d'auth avec JWT et des routes proteges**
 
