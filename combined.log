@@ -1,0 +1,13 @@
+2023-07-31 20:28:59 info: User created successfully!
+2023-07-31 20:28:59 info: User registered successfully
+2023-07-31 20:31:35 info: Attempting login with field: undefined
+2023-07-31 20:32:11 info: Attempting login with field: undefined
+2023-07-31 20:32:17 info: Attempting login with field: undefined
+2023-07-31 20:32:53 info: Attempting login with field: undefined
+2023-07-31 20:35:20 info: Attempting login with field: 242darkman
+2023-07-31 20:35:20 error: There was a problem logging in: secretOrPrivateKey must have a value
+2023-07-31 20:36:56 info: Attempting login with field: 242darkman
+2023-07-31 20:36:57 error: There was a problem logging in: secretOrPrivateKey must have a value
+2023-07-31 20:47:24 info: Attempting login with field: 242darkman
+2023-07-31 21:20:27 info: Attempting login with field: 242darkman
+2023-07-31 21:44:52 info: Headers value:
