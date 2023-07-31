@@ -1,4 +1,4 @@
-import User from '../../models/user/userModel.js';
+import User from '../../models/user/user.model.js';
 import get from 'lodash/get.js';
 import isNull from 'lodash/isNull.js';
 import isUndefined from 'lodash/isUndefined.js';

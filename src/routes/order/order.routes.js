@@ -1,19 +1,21 @@
 import {
   createOrder,
-  getOrders,
-  getOrder,
-  updateOrder,
   deleteOrder,
-} from '../../controllers/order/orderController.js';
+  getOrder,
+  getOrders,
+  updateOrder,
+} from '../../controllers/order/order.controller.js';
 
+import { authorize } from '../../guards/auth.guard.js';
 import express from 'express';
 
 const router = express.Router();
 
 /**
  * @swagger
- * /Order:
+ * /api/order:
  *   post:
+ *     summary: Create a new order
  *     tags:
  *      - Order
  *     description: Create a new order
@@ -34,12 +36,13 @@ const router = express.Router();
  *       400:
  *         description: Invalid request
  */
-router.post('/order', createOrder);
+router.post('/order', authorize, createOrder);
 
 /**
  * @swagger
- * /orders:
+ * /api/orders:
  *   get:
+ *     summary: Retrieve all orders
  *     tags:
  *       - Order
  *     description: Get all orders
@@ -69,12 +72,13 @@ router.post('/order', createOrder);
  *       404:
  *         description: Order not found
  */
-router.get('/orders', getOrders);
+router.get('/orders', authorize, getOrders);
 
 /**
  * @swagger
- * /order/{id}:
+ * /api/order/{id}:
  *   get:
+ *     summary: Get a single order
  *     tags:
  *      - Order
  *     description: Get a order by ID
@@ -111,12 +115,13 @@ router.get('/orders', getOrders);
  *         description: Order not found
  */
 
-router.get('/order/:id', getOrder);
+router.get('/order/:id', authorize, getOrder);
 
 /**
  * @swagger
- * /order/{id}:
+ * /api/order/{id}:
  *   put:
+ *     summary: Update specific order
  *     tags:
  *      - Order
  *     description: Update a order by ID
@@ -149,12 +154,13 @@ router.get('/order/:id', getOrder);
  *         description: Order not found
  */
 
-router.put('/order/:id', updateOrder);
+router.put('/order/:id', authorize, updateOrder);
 
 /**
  * @swagger
- * /order/{id}:
+ * /api/order/{id}:
  *   delete:
+ *     summary: Delete a single order
  *     tags:
  *      - Order
  *     description: Delete a order by ID
@@ -174,6 +180,6 @@ router.put('/order/:id', updateOrder);
  *         description: Order not found
  */
 
-router.delete('/order/:id', deleteOrder);
+router.delete('/order/:id', authorize, deleteOrder);
 
 export default router;

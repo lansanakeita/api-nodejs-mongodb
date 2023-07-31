@@ -4,7 +4,7 @@ import {
   getUser,
   getUsers,
   updateUser,
-} from '../../controllers/user/userController.js';
+} from '../../controllers/user/user.controller.js';
 
 import { authorize } from '../../guards/auth.guard.js';
 import { body } from 'express-validator';
@@ -66,7 +66,7 @@ const router = express.Router();
  *
  */
 
-router.get('/users', getUsers);
+router.get('/users', authorize, getUsers);
 
 /**
  * @swagger
@@ -170,7 +170,7 @@ router.get('/users/:id', getUser);
  *         description: User not found
  */
 
-router.put('/users/:id', updateUser);
+router.put('/users/:id', authorize, updateUser);
 
 /**
  * @swagger
@@ -196,7 +196,7 @@ router.put('/users/:id', updateUser);
  *         description: User not found
  */
 
-router.delete('/users/:id', deleteUser);
+router.delete('/users/:id', authorize, deleteUser);
 
 /**
  * @swagger

@@ -1,19 +1,21 @@
 import {
   createProduct,
-  getProducts,
-  getProduct,
-  updateProduct,
   deleteProduct,
-} from '../../controllers/product/productController.js';
+  getProduct,
+  getProducts,
+  updateProduct,
+} from '../../controllers/product/product.controller.js';
 
+import { authorize } from '../../guards/auth.guard.js';
 import express from 'express';
 
 const router = express.Router();
 
 /**
  * @swagger
- * /product:
+ * /api/product:
  *   post:
+ *     summary: Create a product
  *     tags:
  *      - Product
  *     description: Create a new product
@@ -39,12 +41,13 @@ const router = express.Router();
  *         description: Invalid request
  */
 
-router.post('/product', createProduct);
+router.post('/product', authorize, createProduct);
 
 /**
  * @swagger
- * /products:
+ * /api/products:
  *   get:
+ *     summary: Retrieve all products
  *     tags:
  *       - Product
  *     description: Get all products
@@ -88,12 +91,13 @@ router.post('/product', createProduct);
  *         description: Product not found
  */
 
-router.get('/products', getProducts);
+router.get('/products', authorize, getProducts);
 
 /**
  * @swagger
- * /product/{id}:
+ * /api/product/{id}:
  *   get:
+ *     summary: Get a product
  *     tags:
  *      - Product
  *     description: Get a product by ID
@@ -142,12 +146,13 @@ router.get('/products', getProducts);
  *         description: Product not found
  */
 
-router.get('/product/:id', getProduct);
+router.get('/product/:id', authorize, getProduct);
 
 /**
  * @swagger
- * /product/{id}:
+ * /api/product/{id}:
  *   put:
+ *     summary: Update single product
  *     tags:
  *      - Product
  *     description: Update a product by ID
@@ -184,12 +189,13 @@ router.get('/product/:id', getProduct);
  *         description: Product not found
  */
 
-router.put('/product/:id', updateProduct);
+router.put('/product/:id', authorize, updateProduct);
 
 /**
  * @swagger
- * /product/{id}:
+ * /api/product/{id}:
  *   delete:
+ *     summary: Delete a product
  *     tags:
  *      - Product
  *     description: Delete a product by ID
@@ -209,6 +215,6 @@ router.put('/product/:id', updateProduct);
  *         description: Product not found
  */
 
-router.delete('/product/:id', deleteProduct);
+router.delete('/product/:id', authorize, deleteProduct);
 
 export default router;

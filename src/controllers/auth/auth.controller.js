@@ -1,8 +1,6 @@
-import { createUser, updateUser } from '../user/userController.js';
-
-import RefreshToken from '../../models/auth/refresh-token.model.js';
-import User from '../../models/user/userModel.js';
+import User from '../../models/user/user.model.js';
 import bcrypt from 'bcryptjs';
+import { createUser } from '../user/user.controller.js';
 import dotenv from 'dotenv';
 import get from 'lodash/get.js';
 import includes from 'lodash/includes.js';

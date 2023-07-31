@@ -1,10 +1,13 @@
-import Product from '../../models/product/productModel.js';
+import Product from '../../models/product/product.model.js';
 import get from 'lodash/get.js';
 import isNull from 'lodash/isNull.js';
 import isUndefined from 'lodash/isUndefined.js';
 
 /**
- * création d'un produit
+ * Crée un nouveau produit.
+ * @param {Object} req - L'objet de requête contenant les détails du produit.
+ * @param {Object} res - L'objet de réponse.
+ * @returns {Object} L'objet du produit créé si réussi, ou un objet d'erreur si échec.
  */
 export async function createProduct(req, res) {
   try {
@@ -27,7 +30,10 @@ export async function createProduct(req, res) {
 }
 
 /**
- * récupération de l'ensemble des products
+ * Récupère tous les produits.
+ * @param {Object} req - L'objet de requête.
+ * @param {Object} res - L'objet de réponse.
+ * @returns {Array} Un tableau de tous les produits, ou un objet d'erreur si échec.
  */
 export async function getProducts(req, res) {
   try {
@@ -38,8 +44,11 @@ export async function getProducts(req, res) {
   }
 }
 
-/***
- * Mettre à jour un produit
+/**
+ * Met à jour un produit existant par ID.
+ * @param {Object} req - L'objet de requête contenant l'ID du produit et les champs à mettre à jour.
+ * @param {Object} res - L'objet de réponse.
+ * @returns {Object} L'objet du produit mis à jour si réussi, ou un objet d'erreur si échec.
  */
 export async function updateProduct(req, res) {
   const updatedInfo = Object.keys(req.body);
@@ -61,7 +70,10 @@ export async function updateProduct(req, res) {
 }
 
 /**
- * Suppression d'un produit
+ * Supprime un produit par ID.
+ * @param {Object} req - L'objet de requête contenant l'ID du produit.
+ * @param {Object} res - L'objet de réponse.
+ * @returns {Object} Un message de succès si réussi, ou un objet d'erreur si échec.
  */
 export async function deleteProduct(req, res) {
   try {
@@ -77,7 +89,10 @@ export async function deleteProduct(req, res) {
 }
 
 /**
- * Récupérer un seul produit
+ * Récupère un seul produit par ID.
+ * @param {Object} req - L'objet de requête contenant l'ID du produit.
+ * @param {Object} res - L'objet de réponse.
+ * @returns {Object} L'objet du produit récupéré si trouvé, ou un objet d'erreur si échec.
  */
 export async function getProduct(req, res) {
   const { id } = req.params;
