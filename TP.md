@@ -9,7 +9,7 @@ A rendre :
   - **test unitaire** (un CRUD suffit)
   - test fonctionnel
   - test e2e
-- prevoir une couche DTO qui permet de presenter uniquement les demandees par le client
+- **prevoir une couche DTO qui permet de presenter uniquement les demandees par le client**
 - **controler les donnees issues de formulaires**
 - **prevoir un systeme de gestion d'erreur efficace avec fichier de logs**
 - **generer une APIDoc web type swagger**
