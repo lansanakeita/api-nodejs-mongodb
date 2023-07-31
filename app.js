@@ -30,4 +30,13 @@ app.use((err, req, res, next) => {
   res.status(500).send({ error: 'An unexpected error occurred!' });
 });
 
+app.use((req, res, next) => {
+  const { method, url, headers } = req;
+  const host = headers.host;
+  const port = req.socket.localPort;
+
+  logger.info(`Request: ${method} ${url} - Host: ${host} - Port: ${port}`);
+  next();
+});
+
 export default app;
