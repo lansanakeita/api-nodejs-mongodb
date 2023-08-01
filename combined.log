@@ -11,3 +11,26 @@
 2023-07-31 20:47:24 info: Attempting login with field: 242darkman
 2023-07-31 21:20:27 info: Attempting login with field: 242darkman
 2023-07-31 21:44:52 info: Headers value:
+2023-08-01 00:07:25 [32m'info'[39m: Successfully fetched all users
+2023-08-01 00:07:25 [31m'error'[39m: Error getting users: Error: An error occurred
+2023-08-01 00:07:25 [31m'error'[39m: Error getting user with id 1: Error: An error occurred
+2023-08-01 00:07:25 [33m'warn'[39m: User not found for ID: 1
+2023-08-01 00:07:25 [33m'warn'[39m: User not found for ID: 1
+2023-08-01 00:31:49 [32m'info'[39m: Successfully fetched all users
+2023-08-01 00:31:49 [31m'error'[39m: Error getting users: Error: An error occurred
+2023-08-01 00:31:49 [31m'error'[39m: Error getting user with id 1: Error: An error occurred
+2023-08-01 00:31:50 [33m'warn'[39m: User not found for ID: 1
+2023-08-01 00:31:50 [33m'warn'[39m: User not found for ID: 1
+2023-08-01 01:20:09 [32m'info'[39m: Successfully fetched all users
+2023-08-01 01:20:09 [31m'error'[39m: Error getting users: Error: An error occurred
+2023-08-01 01:20:09 [31m'error'[39m: Error getting user with id 1: Error: An error occurred
+2023-08-01 01:20:09 [33m'warn'[39m: User not found for ID: 1
+2023-08-01 01:20:09 [33m'warn'[39m: User not found for ID: 1
+2023-08-01 20:46:44 [32m'info'[39m: Successfully fetched all users
+2023-08-01 20:46:44 [31m'error'[39m: Error getting users: Error: An error occurred
+2023-08-01 20:46:44 [31m'error'[39m: Error getting user with id 1: Error: An error occurred
+2023-08-01 20:46:44 [33m'warn'[39m: User not found for ID: 1
+2023-08-01 20:46:44 [33m'warn'[39m: User not found for ID: 1
+2023-08-01 20:47:52 [32m'info'[39m: Successfully fetched all users
+2023-08-01 20:47:52 [31m'error'[39m: Error getting users: Error: An error occurred
+2023-08-01 20:47:52 [31m'error'[39m: Error getting user with id 1: Error: An error occurred

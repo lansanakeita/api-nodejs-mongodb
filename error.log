@@ -1,2 +1,12 @@
 2023-07-31 20:35:20 error: There was a problem logging in: secretOrPrivateKey must have a value
 2023-07-31 20:36:57 error: There was a problem logging in: secretOrPrivateKey must have a value
+2023-08-01 00:07:25 [31m'error'[39m: Error getting users: Error: An error occurred
+2023-08-01 00:07:25 [31m'error'[39m: Error getting user with id 1: Error: An error occurred
+2023-08-01 00:31:49 [31m'error'[39m: Error getting users: Error: An error occurred
+2023-08-01 00:31:49 [31m'error'[39m: Error getting user with id 1: Error: An error occurred
+2023-08-01 01:20:09 [31m'error'[39m: Error getting users: Error: An error occurred
+2023-08-01 01:20:09 [31m'error'[39m: Error getting user with id 1: Error: An error occurred
+2023-08-01 20:46:44 [31m'error'[39m: Error getting users: Error: An error occurred
+2023-08-01 20:46:44 [31m'error'[39m: Error getting user with id 1: Error: An error occurred
+2023-08-01 20:47:52 [31m'error'[39m: Error getting users: Error: An error occurred
+2023-08-01 20:47:52 [31m'error'[39m: Error getting user with id 1: Error: An error occurred
