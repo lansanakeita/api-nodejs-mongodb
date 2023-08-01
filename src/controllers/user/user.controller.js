@@ -37,8 +37,9 @@ export async function getUser(req, res) {
   const id = get(req.params, 'id');
   try {
     const user = await User.findById(id);
+
     if (isNull(user) || isUndefined(user)) {
-      res.status(404).json({ error: 'User not found' });
+      return res.status(404).json({ error: 'User not found' });
     }
     res.status(200).json(userDTO(user));
   } catch (error) {
@@ -66,36 +67,32 @@ export async function createUser(req, res) {
   }
 
   try {
-    const existingUser = await User.findOne({ userName: req.body.userName });
-    const existingEmail = await User.findOne({ email: req.body.email });
+    const existingUser = await User.findOne({
+      $or: [{ userName: req.body.userName }, { email: req.body.email }],
+    });
 
     if (existingUser) {
-      logger.warn('User name already in use.');
-      return res.status(400).json({ error: 'User name already in use.' });
-    }
-
-    if (existingEmail) {
-      logger.warn('Email already in use.');
-      return res.status(400).json({ error: 'Email already in use.' });
+      if (existingUser.userName === req.body.userName) {
+        logger.warn('User name already in use.');
+        return res.status(400).json({ error: 'User name already in use.' });
+      }
+      if (existingUser.email === req.body.email) {
+        logger.warn('Email already in use.');
+        return res.status(400).json({ error: 'Email already in use.' });
+      }
     }
 
     const user = new User(req.body);
-    await user
-      .save()
-      .then((result) => {
-        logger.info('User created successfully!');
-        return res.status(201).json({
-          message: 'User created successfully!',
-          user: result,
-        });
-      })
-      .catch((err) => {
-        logger.error(`Error creating user: ${err.toString()}`);
-        return res.status(500).json({ error: err.toString() });
-      });
+    await user.save();
+
+    logger.info('User created successfully!');
+    return res.status(201).json({
+      message: 'User created successfully!',
+      user: userDTO(user),
+    });
   } catch (error) {
-    logger.error(`Error processing request: ${error.toString()}`);
-    return res.status(400).json({ error: error.toString() });
+    logger.error(`Error creating user: ${error.toString()}`);
+    return res.status(500).json({ error: error.toString() });
   }
 }
 
@@ -153,7 +150,7 @@ export async function updateUser(req, res) {
     await user.save();
 
     logger.info(`User with ID: ${id} updated successfully!`);
-    return res.status(200).json(user);
+    return res.status(200).json(userDTO(user));
   } catch (error) {
     logger.error(`Error updating user with ID: ${id}: ${error.toString()}`);
     return res.status(400).json({ error: error.toString() });
